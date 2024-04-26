@@ -1,12 +1,13 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import dotenv from "dotenv";
+import dotenv from 'dotenv';
 import mongoose from "mongoose";
-import { router as systemUserRouter } from "./mongodb/routes/systemUser.router.mjs";
 dotenv.config();
+console.log(process.env.MONGO_URL);
+import { router as systemUserRouter } from "./mongodb/routes/systemUser.router.mjs";
 // connect to MONGODB database
-const MongoDB_Connection_String = `mongodb+srv://akshat:net123@tmscluster.ilzrhhb.mongodb.net/?retryWrites=true&w=majority&appName=TmsCluster`;
+const MongoDB_Connection_String = process.env.MONGO_URL ?? "";
 async function connectToMongoDB(connectionString) {
     await mongoose.connect(connectionString);
     console.log("Connect to MongoDB Database!");

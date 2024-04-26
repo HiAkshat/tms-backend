@@ -39,10 +39,19 @@ const commentSchema = new Schema({
     created_date: { type: Date, default: Date.now, required: true },
     updated_date: { type: Date, default: Date.now, required: true }
 });
+const ticketHistorySchema = new Schema({
+    ticket: { type: Schema.Types.ObjectId, ref: 'Ticket', required: true },
+    user: { type: Schema.Types.ObjectId, ref: 'OrganisationUser', required: true },
+    field: { type: String, required: true },
+    old_value: { type: String, required: true },
+    new_value: { type: String, required: true },
+    updated_date: { type: Date, default: Date.now, required: true }
+});
 const Organisation = mongoose.model('Organisation', organisationSchema);
 const SystemUser = mongoose.model('SystemUser', systemUserSchema);
 const OrganisationUser = mongoose.model('OrganisationUser', organisationUserSchema);
 const Ticket = mongoose.model('Ticket', ticketSchema);
 const Comment = mongoose.model('Comment', commentSchema);
-export { Organisation, SystemUser, OrganisationUser, Ticket, Comment };
+const TicketHistory = mongoose.model('TicketHistory', ticketHistorySchema);
+export { Organisation, SystemUser, OrganisationUser, Ticket, Comment, TicketHistory };
 //# sourceMappingURL=models.mjs.map
