@@ -23,9 +23,9 @@ router.post("/addSystemUser", async (req, res) => {
   }
 })
 
-router.get("/systemUser/:id", async (req, res) => {
+router.get("/systemUser/:email", async (req, res) => {
   try {
-    const data = await SystemUser.findById(req.params.id)
+    const data = await SystemUser.find({email_id: req.params.email})
     console.log("System user retrieved!")
     res.status(200).json(data)    
   } catch (e) {
