@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 
 dotenv.config()
 console.log(process.env.MONGO_URL)
-import { router as systemUserRouter } from "./mongodb/routes/systemUser.router.mjs";
+import { router as systemUserRouter } from "./routes/systemUser.router.mjs";
 
 
 // connect to MONGODB database

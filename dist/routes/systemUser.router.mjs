@@ -1,6 +1,9 @@
 import express from "express";
 const router = express.Router();
-import { SystemUser, Ticket, OrganisationUser, Organisation } from "../models/models.mjs";
+import { SystemUser } from "../models/systemUserModel.mjs";
+import { Ticket } from "../models/ticketModel.mjs";
+import { OrganisationUser } from "../models/organisationUserModel.mjs";
+import { Organisation } from "../models/organisationModel.mjs";
 router.get("/getSystemUsers", async (req, res) => {
     try {
         const data = await SystemUser.find({});

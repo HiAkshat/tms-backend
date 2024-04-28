@@ -1,7 +1,10 @@
 import express from "express"
 const router = express.Router()
 
-import { SystemUser, Ticket, OrganisationUser, Organisation } from "../models/models.mjs"
+import { SystemUser } from "../models/systemUserModel.mjs"
+import { Ticket } from "../models/ticketModel.mjs"
+import { OrganisationUser } from "../models/organisationUserModel.mjs"
+import { Organisation } from "../models/organisationModel.mjs"
 
 router.get("/getSystemUsers", async (req, res) => {
   try {
@@ -41,6 +44,7 @@ router.get("/getOrganisationUsers", async (req, res) => {
     console.log("Organisation users retrieved!")
     res.status(200).json(data)    
   } catch (e) {
+    res.status(404).json({error: e})    
     console.log("Error occured retrieving organisation users:", e)
   }
 })
@@ -55,9 +59,9 @@ router.post("/addOrganisationUser", async (req, res) => {
   }
 })
 
-router.get("/organisationUser/:id", async (req, res) => {
+router.get("/organisationUser/:email", async (req, res) => {
   try {
-    const data = await OrganisationUser.findById(req.params.id)
+    const data = await OrganisationUser.find({email_id: req.params.email})
     console.log("Organisation user retrieved!")
     res.status(200).json(data)    
   } catch (e) {
@@ -115,7 +119,8 @@ router.post("/organisation", async (req, res) => {
     res.status(200).json(data)
     console.log("New organisation created!")
   } catch (e) {
-    console.log("Couldnt create organisation:", e)
+    res.status(404).json({message: e})
+    // console.log("Couldnt create organisation:", e)
   }
 })
 
