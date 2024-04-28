@@ -6,6 +6,8 @@ import mongoose from "mongoose";
 dotenv.config();
 console.log(process.env.MONGO_URL);
 import { router as systemUserRouter } from "./routes/systemUser.router.mjs";
+import organisationRouter from "./routes/organisationRoutes.mjs";
+import organisationUserRouter from "./routes/organisationUserRoutes.mjs";
 // connect to MONGODB database
 const MongoDB_Connection_String = process.env.MONGO_URL ?? "";
 async function connectToMongoDB(connectionString) {
@@ -25,6 +27,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.use(cookieParser());
 app.use("/api", systemUserRouter);
+app.use("/api/organisation", organisationRouter);
+app.use("/api/organisationUser", organisationUserRouter);
 app.get("/", (req, res) => {
     res.status(200).send("Hello World!");
 });

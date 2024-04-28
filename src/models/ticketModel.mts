@@ -12,7 +12,7 @@ const ticketSchema = new Schema({
   created_date: { type: Date, default: Date.now, required: true },
   updated_date: { type: Date, default: Date.now, required: true },
   due_date: { type: Date },
-  files: [{ type: String }], // Assuming you'll store file paths here
+  files: [{ type: String }],
   comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
 });
 

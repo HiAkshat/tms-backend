@@ -6,8 +6,10 @@ import mongoose from "mongoose";
 
 dotenv.config()
 console.log(process.env.MONGO_URL)
-import { router as systemUserRouter } from "./routes/systemUser.router.mjs";
 
+import { router as systemUserRouter } from "./routes/systemUser.router.mjs";
+import organisationRouter from "./routes/organisationRoutes.mjs"
+import organisationUserRouter from "./routes/organisationUserRoutes.mjs"
 
 // connect to MONGODB database
 const MongoDB_Connection_String = process.env.MONGO_URL ?? ""
@@ -30,7 +32,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.use(cookieParser());
+
 app.use("/api", systemUserRouter)
+app.use("/api/organisation", organisationRouter)
+app.use("/api/organisationUser", organisationUserRouter)
 
 app.get("/", (req: Request, res: any) => {
   res.status(200).send("Hello World!");
