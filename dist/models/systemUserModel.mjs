@@ -5,6 +5,8 @@ const systemUserSchema = new Schema({
     first_name: { type: String, required: true },
     last_name: { type: String, required: true },
     dob: { type: Date, required: true },
+    otp: { type: Number }, // Store OTP
+    otpExpiration: { type: Date }, // Store OTP expiration time
 });
 const SystemUser = mongoose.model('SystemUser', systemUserSchema);
 export { SystemUser };

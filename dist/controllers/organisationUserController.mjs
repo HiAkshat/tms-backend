@@ -41,6 +41,17 @@ const getOrganisationUser = async (req, res) => {
         console.log("Error occured retrieving organisation user:", e);
     }
 };
+const getOrganisationUserByEmail = async (req, res) => {
+    const { email_id } = req.params;
+    try {
+        const data = await OrganisationUser.findOne({ email_id });
+        console.log("Organisation user retrieved!");
+        res.status(200).json(data);
+    }
+    catch (e) {
+        console.log("Error occured retrieving organisation user:", e);
+    }
+};
 const editOrganisationUser = async (req, res) => {
     const { id } = req.params;
     const { email_id, first_name, last_name, dob, organisation, joining_date } = req.body;
@@ -72,5 +83,5 @@ const deleteOrganisationUser = async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 };
-export { getOrganisationUser, getOrganisationUsersByOrgID, getOrganisationUsers, addOrganisationUser, editOrganisationUser, deleteOrganisationUser };
+export { getOrganisationUser, getOrganisationUsersByOrgID, getOrganisationUsers, addOrganisationUser, editOrganisationUser, deleteOrganisationUser, getOrganisationUserByEmail };
 //# sourceMappingURL=organisationUserController.mjs.map
