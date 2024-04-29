@@ -6,7 +6,7 @@ import {
   getOrganisation,
   addOrganisation,
   editOrganisation,
-  deleteOrganisation,
+  deleteOrganisation
 } from "../controllers/organisationController.mjs";
 
 router

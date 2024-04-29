@@ -7,6 +7,7 @@ import {
   addOrganisationUser,
   editOrganisationUser,
   deleteOrganisationUser,
+  getOrganisationUsersByOrgID
 } from "../controllers/organisationUserController.mjs";
 
 router
@@ -19,5 +20,9 @@ router
   .get(getOrganisationUser)
   .put(editOrganisationUser)
   .delete(deleteOrganisationUser);
+
+router
+  .route("/organisation/:id")
+  .get(getOrganisationUsersByOrgID)
 
 export default router;

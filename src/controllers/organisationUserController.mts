@@ -12,6 +12,17 @@ const getOrganisationUsers = async (req: Request, res: Response) => {
   }
 }
 
+const getOrganisationUsersByOrgID = async (req: Request, res: Response) => {
+  try {
+    const data = await OrganisationUser.find({organisation: req.params.id}).populate('organisation')
+    console.log("Organisation users retrieved!")
+    res.status(200).json(data)    
+  } catch (e) {
+    res.status(404).json({error: e})    
+    console.log("Error occured retrieving organisation users:", e)
+  }
+}
+
 const addOrganisationUser = async (req: Request, res: Response) => {
   try {
     const data = await OrganisationUser.create(req.body)
@@ -73,5 +84,5 @@ const deleteOrganisationUser = async (req: Request, res: Response) => {
   }
 };
 
-export {getOrganisationUser, getOrganisationUsers, addOrganisationUser, editOrganisationUser, deleteOrganisationUser}
+export {getOrganisationUser, getOrganisationUsersByOrgID, getOrganisationUsers, addOrganisationUser, editOrganisationUser, deleteOrganisationUser}
 
