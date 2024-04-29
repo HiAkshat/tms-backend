@@ -9,6 +9,16 @@ const getOrganisations = async (req, res) => {
         res.status(404).json(e);
     }
 };
+const getOrganisation = async (req, res) => {
+    try {
+        const data = await Organisation.findById(req.params.id);
+        res.status(200).json(data);
+        console.log("Organisation data retrieved!");
+    }
+    catch (e) {
+        res.status(404).json(e);
+    }
+};
 const addOrganisation = async (req, res) => {
     try {
         const data = await Organisation.create(req.body);
@@ -50,5 +60,5 @@ const deleteOrganisation = async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 };
-export { getOrganisations, addOrganisation, editOrganisation, deleteOrganisation };
+export { getOrganisations, getOrganisation, addOrganisation, editOrganisation, deleteOrganisation };
 //# sourceMappingURL=organisationController.mjs.map

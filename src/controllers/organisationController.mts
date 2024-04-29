@@ -11,6 +11,16 @@ const getOrganisations = async (req: Request, res: Response) => {
   }
 }
 
+const getOrganisation = async (req: Request, res: Response) => {
+  try {
+    const data = await Organisation.findById(req.params.id)
+    res.status(200).json(data)
+    console.log("Organisation data retrieved!")
+  } catch (e) {
+    res.status(404).json(e)
+  }
+}
+
 const addOrganisation = async (req: Request, res: Response) => {
   try {
     const data = await Organisation.create(req.body)
@@ -62,4 +72,4 @@ const deleteOrganisation = async (req: Request, res: Response) => {
   }
 };
 
-export {getOrganisations, addOrganisation, editOrganisation, deleteOrganisation}
+export {getOrganisations, getOrganisation, addOrganisation, editOrganisation, deleteOrganisation}

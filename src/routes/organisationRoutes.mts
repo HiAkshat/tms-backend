@@ -3,6 +3,7 @@ const router = express.Router();
 
 import {
   getOrganisations,
+  getOrganisation,
   addOrganisation,
   editOrganisation,
   deleteOrganisation,
@@ -15,6 +16,7 @@ router
 
 router
   .route("/:id")
+  .get(getOrganisation)
   .put(editOrganisation)
   .delete(deleteOrganisation)
 

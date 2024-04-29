@@ -15,9 +15,9 @@ router
   .post(addOrganisationUser);
 
 router
-  .route("/:email")
+  .route("/:id")
   .get(getOrganisationUser)
-  .post(editOrganisationUser)
+  .put(editOrganisationUser)
   .delete(deleteOrganisationUser);
 
 export default router;

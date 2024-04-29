@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 
 const getOrganisationUsers = async (req: Request, res: Response) => {
   try {
-    const data = await OrganisationUser.find({})
+    const data = await OrganisationUser.find({}).populate('organisation')
     console.log("Organisation users retrieved!")
     res.status(200).json(data)    
   } catch (e) {
@@ -24,7 +24,7 @@ const addOrganisationUser = async (req: Request, res: Response) => {
 
 const getOrganisationUser = async (req: Request, res: Response) => {
   try {
-    const data = await OrganisationUser.find({email_id: req.params.email})
+    const data = await OrganisationUser.findById(req.params.id)
     console.log("Organisation user retrieved!")
     res.status(200).json(data)    
   } catch (e) {

@@ -1,7 +1,7 @@
 import { OrganisationUser } from "../models/organisationUserModel.mjs";
 const getOrganisationUsers = async (req, res) => {
     try {
-        const data = await OrganisationUser.find({});
+        const data = await OrganisationUser.find({}).populate('organisation');
         console.log("Organisation users retrieved!");
         res.status(200).json(data);
     }
@@ -22,7 +22,7 @@ const addOrganisationUser = async (req, res) => {
 };
 const getOrganisationUser = async (req, res) => {
     try {
-        const data = await OrganisationUser.find({ email_id: req.params.email });
+        const data = await OrganisationUser.findById(req.params.id);
         console.log("Organisation user retrieved!");
         res.status(200).json(data);
     }
