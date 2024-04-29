@@ -42,7 +42,7 @@ const getSystemUserByEmail = async (req, res) => {
     }
 };
 const sendOTP = async (req, res) => {
-    const { email_id } = req.body;
+    const { email_id } = req.params;
     try {
         const user = await SystemUser.findOne({ email_id });
         if (!user) {
@@ -84,5 +84,17 @@ const sendOTP = async (req, res) => {
         return res.status(500).json({ success: false, message: 'Internal server error' });
     }
 };
-export { getSystemUsers, addSystemUser, getSystemUser, getSystemUserByEmail, sendOTP };
+const verifyOTP = async (req, res) => {
+    const { email_id, otp } = req.body;
+    const user = await SystemUser.findOne({ email_id });
+    if (!user) {
+        return res.status(404).json({ valid: false, message: 'User not found' });
+    }
+    if (user.otp == otp && user.otpExpiration && user.otpExpiration.getTime() > Date.now()) {
+        return res.status(200).json({ valid: true, message: 'OTP is valid' });
+    }
+    else
+        return res.status(400).json({ valid: false, message: 'Invalid or expired OTP' });
+};
+export { getSystemUsers, addSystemUser, getSystemUser, getSystemUserByEmail, sendOTP, verifyOTP };
 //# sourceMappingURL=systemUserController.mjs.map

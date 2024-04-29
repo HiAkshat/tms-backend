@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router();
 
-import {getSystemUser, getSystemUsers, addSystemUser, sendOTP, getSystemUserByEmail} from "../controllers/systemUserController.mjs"
+import {getSystemUser, getSystemUsers, addSystemUser, sendOTP, verifyOTP, getSystemUserByEmail} from "../controllers/systemUserController.mjs"
 
 router
   .route("/")
@@ -17,7 +17,11 @@ router
   .get(getSystemUserByEmail)
 
 router
-  .route("/sendOTP")
+  .route("/sendOTP/:email_id")
   .post(sendOTP)
+
+router
+  .route("/verifyOTP")
+  .post(verifyOTP)
 
 export default router
