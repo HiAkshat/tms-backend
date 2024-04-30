@@ -103,7 +103,7 @@ const verifyOTP = async (req: Request, res: Response) => {
   if (!user) {
     return res.status(404).json({ valid: false, message: 'User not found' });
   }
-
+  
   if (user.otp == otp && user.otpExpiration && user.otpExpiration.getTime() > Date.now()) {
     return res.status(200).json({ valid: true, message: 'OTP is valid' });
   }
