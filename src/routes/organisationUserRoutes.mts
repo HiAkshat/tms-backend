@@ -8,7 +8,9 @@ import {
   editOrganisationUser,
   deleteOrganisationUser,
   getOrganisationUsersByOrgID,
-  getOrganisationUserByEmail
+  getOrganisationUserByEmail,
+  sendOTP,
+  verifyOTP
 } from "../controllers/organisationUserController.mjs";
 
 router
@@ -30,4 +32,11 @@ router
   .route("/organisation/:id")
   .get(getOrganisationUsersByOrgID)
 
+router
+.route("/sendOTP/:email_id")
+.post(sendOTP)
+
+router
+  .route("/verifyOTP")
+  .post(verifyOTP)
 export default router;

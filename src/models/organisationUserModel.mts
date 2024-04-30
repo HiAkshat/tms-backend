@@ -8,6 +8,8 @@ const organisationUserSchema = new Schema({
   dob: { type: Date, required: true },
   organisation: { type: Schema.Types.ObjectId, ref: 'Organisation', required: true },
   joining_date: { type: Date, required: true },
+  otp: { type: Number }, // Store OTP
+  otpExpiration: { type: Date }, // Store OTP expiration time
 });
 
 const OrganisationUser = mongoose.model('OrganisationUser', organisationUserSchema);

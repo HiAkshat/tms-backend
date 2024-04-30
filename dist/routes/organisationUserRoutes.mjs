@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-import { getOrganisationUser, getOrganisationUsers, addOrganisationUser, editOrganisationUser, deleteOrganisationUser, getOrganisationUsersByOrgID, getOrganisationUserByEmail } from "../controllers/organisationUserController.mjs";
+import { getOrganisationUser, getOrganisationUsers, addOrganisationUser, editOrganisationUser, deleteOrganisationUser, getOrganisationUsersByOrgID, getOrganisationUserByEmail, sendOTP, verifyOTP } from "../controllers/organisationUserController.mjs";
 router
     .route("/")
     .get(getOrganisationUsers)
@@ -16,5 +16,11 @@ router
 router
     .route("/organisation/:id")
     .get(getOrganisationUsersByOrgID);
+router
+    .route("/sendOTP/:email_id")
+    .post(sendOTP);
+router
+    .route("/verifyOTP")
+    .post(verifyOTP);
 export default router;
 //# sourceMappingURL=organisationUserRoutes.mjs.map
