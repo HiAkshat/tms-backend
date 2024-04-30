@@ -7,6 +7,7 @@ const ticketSchema = new Schema({
     description: { type: String },
     assignee: { type: Schema.Types.ObjectId, ref: 'OrganisationUser', required: true },
     reporter: { type: Schema.Types.ObjectId, ref: 'OrganisationUser', required: true },
+    organisation: { type: Schema.Types.ObjectId, ref: 'Organisation', required: true },
     status: { type: String, enum: ['TOBEPICKED', 'INPROGRESS', 'INTESTING', 'COMPLETED'], default: 'TOBEPICKED', required: true },
     created_date: { type: Date, default: Date.now, required: true },
     updated_date: { type: Date, default: Date.now, required: true },
