@@ -26,6 +26,7 @@ app.use("/api/organisation", organisationRouter);
 app.use("/api/organisationUser", organisationUserRouter);
 app.use("/api/systemUser", systemUserRouter);
 app.use("/api/ticket", ticketRouter);
+app.use("/api/ticketHistory", ticketRouter);
 app.get("/", (req, res) => {
     res.status(200).send("Hello World!");
 });

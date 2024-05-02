@@ -25,6 +25,13 @@ const getOrganisationUsersByOrgID = async (req: Request, res: Response) => {
 }
 
 const addOrganisationUser = async (req: Request, res: Response) => {
+  function titleCase(word: string) {
+    return word.charAt(0).toUpperCase() + word.substr(1).toLowerCase();
+ }
+
+  req.body.first_name = titleCase(req.body.first_name)
+  req.body.last_name = titleCase(req.body.last_name)
+  
   try {
     const data = await OrganisationUser.create(req.body)
     res.status(200).json(data)

@@ -11,6 +11,11 @@ const getSystemUsers = async (req, res) => {
     }
 };
 const addSystemUser = async (req, res) => {
+    function titleCase(word) {
+        return word.charAt(0).toUpperCase() + word.substr(1).toLowerCase();
+    }
+    req.body.first_name = titleCase(req.body.first_name);
+    req.body.last_name = titleCase(req.body.last_name);
     try {
         const data = await SystemUser.create(req.body);
         res.status(200).json(data);
