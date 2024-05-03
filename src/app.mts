@@ -12,6 +12,7 @@ import organisationUserRouter from "./routes/organisationUserRoutes.mjs"
 import systemUserRouter from "./routes/systemUserRoutes.mjs"
 import ticketRouter from "./routes/ticketRouter.mjs"
 import ticketHistoryRouter from "./routes/ticketHistoryRoutes.mjs"
+import commentRouter from "./routes/commentRouter.mjs"
 
 // connect to MONGODB database
 const MongoDB_Connection_String = "mongodb+srv://akshat:net123@tmscluster.ilzrhhb.mongodb.net/?retryWrites=true&w=majority&appName=TmsCluster"
@@ -34,6 +35,7 @@ app.use("/api/organisationUser", organisationUserRouter)
 app.use("/api/systemUser", systemUserRouter)
 app.use("/api/ticket", ticketRouter)
 app.use("/api/ticketHistory", ticketRouter)
+app.use("/api/comment", commentRouter)
 
 app.get("/", (req: Request, res: any) => {
   res.status(200).send("Hello World!");
