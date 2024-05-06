@@ -1,6 +1,7 @@
 import { OrganisationUser } from "../models/organisationUserModel.mjs";
 import { Request, Response } from "express";
 import nodemailer from "nodemailer"
+import jwt from "jsonwebtoken"
 
 const getOrganisationUsers = async (req: Request, res: Response) => {
   try {
@@ -158,13 +159,14 @@ const sendOTP = async (req: Request, res: Response) => {
 const verifyOTP = async (req: Request, res: Response) => {
   const { email_id, otp } = req.body;
   const user = await OrganisationUser.findOne({ email_id });
-
+  
   if (!user) {
     return res.status(404).json({ valid: false, message: 'User not found' });
   }
   
   if (user.otp == otp && user.otpExpiration && user.otpExpiration.getTime() > Date.now()) {
-    return res.status(200).json({ valid: true, message: 'OTP is valid' });
+    const accessToken = jwt.sign({user}, "thisisthekey", { expiresIn: '5h' });
+    return res.status(200).json({ accessToken, valid: true, message: 'OTP is valid' });
   }
   else return res.status(400).json({ valid: false, message: 'Invalid or expired OTP' });
 }

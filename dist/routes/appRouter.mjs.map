@@ -1,0 +1,1 @@
+{"version":3,"file":"appRouter.mjs","sourceRoot":"","sources":["../../src/routes/appRouter.mts"],"names":[],"mappings":"AAAA,OAAO,OAAO,MAAM,SAAS,CAAC;AAC9B,MAAM,MAAM,GAAG,OAAO,CAAC,MAAM,EAAE,CAAC;AAEhC,OAAO,WAAW,MAAM,6BAA6B,CAAC;AAEtD,MAAM;KACH,KAAK,CAAC,cAAc,CAAC;KACrB,IAAI,CAAC,WAAW,CAAC,CAAA;AAEpB,eAAe,MAAM,CAAA"}

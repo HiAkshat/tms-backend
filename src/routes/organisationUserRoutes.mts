@@ -39,4 +39,5 @@ router
 router
   .route("/verifyOTP")
   .post(verifyOTP)
+
 export default router;

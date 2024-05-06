@@ -12,6 +12,9 @@ router
 router
   .route("/:ticket_id")
   .get(getCommentsByTicketId)
+
+router
+  .route("/:id")
   .delete(deleteComment)
 
 export default router

@@ -6,7 +6,9 @@ router
     .post(addComment);
 router
     .route("/:ticket_id")
-    .get(getCommentsByTicketId)
+    .get(getCommentsByTicketId);
+router
+    .route("/:id")
     .delete(deleteComment);
 export default router;
 //# sourceMappingURL=commentRouter.mjs.map

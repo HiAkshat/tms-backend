@@ -7,11 +7,11 @@ dotenv.config()
 
 import connectToMongoDB from "./dao/mongodbConnect.mjs";
 
+import appRouter from "./routes/appRouter.mjs"
 import organisationRouter from "./routes/organisationRoutes.mjs"
 import organisationUserRouter from "./routes/organisationUserRoutes.mjs"
 import systemUserRouter from "./routes/systemUserRoutes.mjs"
 import ticketRouter from "./routes/ticketRouter.mjs"
-import ticketHistoryRouter from "./routes/ticketHistoryRoutes.mjs"
 import commentRouter from "./routes/commentRouter.mjs"
 
 // connect to MONGODB database
@@ -22,6 +22,7 @@ try {
   console.log("Error connecting to MongoDB: ", e);
 }
 
+
 const PORT = 8000;
 
 const app = express();
@@ -30,6 +31,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.use(cookieParser());
 
+
+// Routes defintion
+app.use("/api", appRouter)
 app.use("/api/organisation", organisationRouter)
 app.use("/api/organisationUser", organisationUserRouter)
 app.use("/api/systemUser", systemUserRouter)
@@ -37,6 +41,8 @@ app.use("/api/ticket", ticketRouter)
 app.use("/api/ticketHistory", ticketRouter)
 app.use("/api/comment", commentRouter)
 
+
+// App test
 app.get("/", (req: Request, res: any) => {
   res.status(200).send("Hello World!");
 });

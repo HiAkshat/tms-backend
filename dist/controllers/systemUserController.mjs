@@ -1,5 +1,6 @@
 import { SystemUser } from "../models/systemUserModel.mjs";
 import nodemailer from "nodemailer";
+import jwt from "jsonwebtoken";
 const getSystemUsers = async (req, res) => {
     try {
         const data = await SystemUser.find({});
@@ -96,7 +97,8 @@ const verifyOTP = async (req, res) => {
         return res.status(404).json({ valid: false, message: 'User not found' });
     }
     if (user.otp == otp && user.otpExpiration && user.otpExpiration.getTime() > Date.now()) {
-        return res.status(200).json({ valid: true, message: 'OTP is valid' });
+        const accessToken = jwt.sign({ user }, "thisisthekey", { expiresIn: '5h' });
+        return res.status(200).json({ accessToken, valid: true, message: 'OTP is valid' });
     }
     else
         return res.status(400).json({ valid: false, message: 'Invalid or expired OTP' });
