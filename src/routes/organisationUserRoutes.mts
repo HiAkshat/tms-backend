@@ -13,6 +13,10 @@ import {
   verifyOTP
 } from "../controllers/organisationUserController.mjs";
 
+// const organisationInitializer(prefix: string) => {
+//      router.get('/', )
+// }
+
 router
   .route("/")
   .get(getOrganisationUsers)

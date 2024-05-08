@@ -1,6 +1,9 @@
 import express from "express";
 const router = express.Router();
 import { getOrganisationUser, getOrganisationUsers, addOrganisationUser, editOrganisationUser, deleteOrganisationUser, getOrganisationUsersByOrgID, getOrganisationUserByEmail, sendOTP, verifyOTP } from "../controllers/organisationUserController.mjs";
+// const organisationInitializer(prefix: string) => {
+//      router.get('/', )
+// }
 router
     .route("/")
     .get(getOrganisationUsers)

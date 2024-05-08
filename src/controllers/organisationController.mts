@@ -2,7 +2,24 @@ import { Organisation } from "../models/organisationModel.mjs";
 import { Request, Response } from "express";
 
 const getOrganisations = async (req: Request, res: Response) => {
-  try {
+  try {    
+    const data = await Organisation.find({})
+    res.status(200).json(data)
+    console.log("Organisation data retrieved!")
+  } catch (e) {
+    res.status(404).json(e)
+  }
+}
+
+const getSortedOrganisations = async (req: Request, res: Response) => {
+  try { 
+    // const sortBy = req.query.sortBy || "display_name"; // Default sorting by display name
+    // const sortOrder = req.query.sortOrder === "desc" ? -1 : 1;
+
+    // const sortCriteria = {};
+    // sortCriteria[sortBy] = sortOrder;
+
+    // const data = await Organisation.find({}).sort(sortCriteria)
     const data = await Organisation.find({})
     res.status(200).json(data)
     console.log("Organisation data retrieved!")
@@ -72,4 +89,4 @@ const deleteOrganisation = async (req: Request, res: Response) => {
   }
 };
 
-export {getOrganisations, getOrganisation, addOrganisation, editOrganisation, deleteOrganisation}
+export {getOrganisations, getOrganisation, addOrganisation, editOrganisation, deleteOrganisation, getSortedOrganisations}

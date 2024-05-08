@@ -9,6 +9,21 @@ const getOrganisations = async (req, res) => {
         res.status(404).json(e);
     }
 };
+const getSortedOrganisations = async (req, res) => {
+    try {
+        // const sortBy = req.query.sortBy || "display_name"; // Default sorting by display name
+        // const sortOrder = req.query.sortOrder === "desc" ? -1 : 1;
+        // const sortCriteria = {};
+        // sortCriteria[sortBy] = sortOrder;
+        // const data = await Organisation.find({}).sort(sortCriteria)
+        const data = await Organisation.find({});
+        res.status(200).json(data);
+        console.log("Organisation data retrieved!");
+    }
+    catch (e) {
+        res.status(404).json(e);
+    }
+};
 const getOrganisation = async (req, res) => {
     try {
         const data = await Organisation.findById(req.params.id);
@@ -60,5 +75,5 @@ const deleteOrganisation = async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 };
-export { getOrganisations, getOrganisation, addOrganisation, editOrganisation, deleteOrganisation };
+export { getOrganisations, getOrganisation, addOrganisation, editOrganisation, deleteOrganisation, getSortedOrganisations };
 //# sourceMappingURL=organisationController.mjs.map

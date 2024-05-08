@@ -6,13 +6,18 @@ import {
   getOrganisation,
   addOrganisation,
   editOrganisation,
-  deleteOrganisation
+  deleteOrganisation,
+  getSortedOrganisations
 } from "../controllers/organisationController.mjs";
 
 router
   .route("/")
   .post(addOrganisation)
   .get(getOrganisations)
+
+router
+  .route("/sorted")
+  .get(getSortedOrganisations)
 
 router
   .route("/:id")

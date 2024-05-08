@@ -63,7 +63,7 @@ const sendOTP = async (req: Request, res: Response) => {
     }
 
     const otp = Math.floor(100000 + Math.random() * 900000); // Generate 6-digit OTP
-
+    console.log(otp)
     user.otp = otp;
     var dt1 = (new Date()).getTime()
     user.otpExpiration = new Date(dt1+900000) // OTP expires in 15 minutes
